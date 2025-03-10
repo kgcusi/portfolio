@@ -9,6 +9,15 @@ export const experiences = [
     techs: ['HardHat', 'JavaScript', 'Solidity', 'Remix', 'Ethereum']
   },
   {
+    id: 5,
+    title: 'Full Stack Developer - MTech Biometrics',
+    startYear: '2025',
+    endYear: null,
+    description:
+      'Developed multiple applications, including Timekeeping, Live Monitoring, API Bridge, Logs Tracking, and Pay Parking. Integrated a third-party biometric system by fetching and processing data from their database, enabling real-time monitoring and seamless data synchronization for clients.',
+    techs: ['TypeScript', 'Next.js', 'Nest.js', 'MySQL', 'Node.js', 'React.js']
+  },
+  {
     id: 4,
     title: 'Full Stack Developer - EmergentX',
     startYear: '2024',

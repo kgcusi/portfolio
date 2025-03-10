@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Nav from './components/Nav';
 import Experiences from './components/Experiences';
 import CursorGradient from './components/CursorGradient';
-import Avatar from '../public/karl-avatar.png';
+import Avatar from './assets/karl-avatar.png';
 
 function App() {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="bg-custom-light">
       <CursorGradient cursorPosition={cursorPosition} />
-      <div className="flex flex-col md:flex-row items-center md:items-start mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-10">
+      <div className="flex flex-col md:flex-row items-center md:items-start mx-auto min-h-screen max-w-screen-xl px-12 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-10">
         <div className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-10">
           <div className="flex flex-col items-center md:items-start justify-center text-center md:text-start">
             <img
