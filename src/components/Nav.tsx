@@ -1,4 +1,4 @@
-import { Mail, Linkedin, Github } from 'lucide-react';
+import { Mail, Linkedin, Github, Phone, NotepadText } from 'lucide-react';
 
 export default function Nav() {
   return (
@@ -30,6 +30,20 @@ export default function Nav() {
             <Github />
             GitHub
           </a>
+        </li>
+        <li>
+          <a
+            href="/resume.pdf"
+            download="karl-cusi-resume.pdf"
+            className="flex items-center gap-2"
+          >
+            <NotepadText />
+            Curriculum Vitae
+          </a>
+        </li>
+        <li className="flex items-center gap-2">
+          <Phone />
+          +639453017564
         </li>
       </ul>
     </section>
