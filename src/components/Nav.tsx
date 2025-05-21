@@ -3,7 +3,7 @@ import { Mail, Linkedin, Github, Phone, NotepadText } from 'lucide-react';
 export default function Nav() {
   return (
     <section className="block">
-      <ul className="text-custom-slate uppercase text-sm font-bold py-12 flex md:flex-col gap-3">
+      <ul className="text-custom-slate uppercase text-sm font-bold py-5 md:py-12 gap-3 flex flex-col">
         <li>
           <a
             className="flex items-center gap-2"
