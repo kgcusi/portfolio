@@ -9,9 +9,7 @@ const ParticlesBackground = () => {
   }, []);
 
   const particlesLoaded = useCallback(
-    async (container: Container | undefined) => {
-      console.log(container);
-    },
+    async (_container: Container | undefined) => {},
     []
   );
 
@@ -25,7 +23,7 @@ const ParticlesBackground = () => {
         fullScreen: { enable: false },
         background: {
           color: {
-            value: '#f8fafc' // same as your bg-custom-light
+            value: '#DFEBF6'
           }
         },
         particles: {

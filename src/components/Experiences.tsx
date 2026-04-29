@@ -1,24 +1,32 @@
+import { motion } from 'motion/react';
 import { experiences } from '../data/experiences';
 
 export default function Experiences() {
   return (
-    <div className="bg-custom-light backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 shadow-lg mb-4">
-      <section className="text-custom-slate flex flex-col gap-2">
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.5, ease: 'easeOut', delay: 0.05 }}
+      className="bg-white rounded-2xl shadow-md p-8"
+    >
+      <h2 className="text-xs font-bold uppercase tracking-widest text-custom-sky mb-6">
+        Experience
+      </h2>
+      <div className="flex flex-col divide-y divide-custom-neutral">
         {experiences.map((experience) => (
-          <div key={experience.id} className="flex flex-col gap-1">
-            <div>
-              <p className="text-sm font-semibold">
-                {experience.startYear} {experience.endYear && '-'}{' '}
-                {experience.endYear}
-              </p>
-              <p className="text-lg font-bold">{experience.title}</p>
-            </div>
-            <p>{experience.description}</p>
-            <div className="flex gap-1">
+          <div key={experience.id} className="flex flex-col gap-2 py-5 first:pt-0 last:pb-0">
+            <p className="text-xs font-semibold text-custom-steel uppercase tracking-wide">
+              {experience.startYear}
+              {experience.endYear ? ` — ${experience.endYear}` : ' — Present'}
+            </p>
+            <p className="text-sm font-bold text-custom-dark">{experience.title}</p>
+            <p className="text-custom-slate text-sm leading-relaxed">{experience.description}</p>
+            <div className="flex flex-wrap gap-1.5 mt-1">
               {experience.techs.map((tech) => (
                 <span
                   key={tech}
-                  className="text-white bg-custom-slate p-1 text-xs rounded-md font-semibold"
+                  className="text-custom-slate bg-custom-light px-2 py-0.5 text-xs rounded font-medium"
                 >
                   {tech}
                 </span>
@@ -26,7 +34,7 @@ export default function Experiences() {
             </div>
           </div>
         ))}
-      </section>
-    </div>
+      </div>
+    </motion.div>
   );
 }
