@@ -20,8 +20,8 @@ export default function About() {
         </p>
         <p className="text-custom-slate text-sm leading-relaxed">
           My main stack is JavaScript/TypeScript, using Next.js/React.js for the
-          frontend and Node.js for the backend. I also have experience working
-          with other technologies like .NET and Laravel. I'm always eager to
+          frontend and Node.js/Nest.js for the backend. I also have experience
+          working with other technologies like Laravel. I'm always eager to
           learn new technologies and improve my skills.
         </p>
         <p className="text-custom-slate text-sm leading-relaxed">

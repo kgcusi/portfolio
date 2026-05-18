@@ -4,6 +4,7 @@ import About from './components/About';
 import Header from './components/Header';
 import Nav from './components/Nav';
 import Experiences from './components/Experiences';
+import Projects from './components/Projects';
 import ContactForm from './components/ContactForm';
 import CursorGradient from './components/CursorGradient';
 import Avatar from './assets/karl-avatar.png';
@@ -56,6 +57,7 @@ function App() {
         <div className="flex-1 flex flex-col gap-6">
           <About />
           <Experiences />
+          <Projects />
 
           {/* Contact form — mobile only, at the very bottom */}
           <div className="lg:hidden bg-white rounded-2xl shadow-md p-8">

@@ -33,8 +33,9 @@ export default function Nav() {
         </li>
         <li>
           <a
-            href="/resume.pdf"
-            download="karl-cusi-resume.pdf"
+            href="/resume.html"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-3 text-custom-slate hover:text-custom-dark transition-colors"
           >
             <NotepadText size={15} className="text-custom-sky shrink-0" />

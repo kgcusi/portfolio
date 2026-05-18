@@ -18,6 +18,15 @@ export const experiences = [
     techs: ['TypeScript', 'Next.js', 'Nest.js', 'MySQL', 'Node.js', 'React.js']
   },
   {
+    id: 6,
+    title: 'Backend Developer - Liga Gaming',
+    startYear: '2025',
+    endYear: '2026',
+    description:
+      'Developed microservices with Nest.js to develop backend processes for an online casino, focused on Announcement Service and Notification Service, with communication across other microservices.',
+    techs: ['Node.js', 'Nest.js', 'Kafka', 'Postgres', 'Docker', 'gRPC']
+  },
+  {
     id: 4,
     title: 'Full Stack Developer - EmergentX',
     startYear: '2024',
