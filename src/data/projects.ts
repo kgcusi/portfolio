@@ -22,7 +22,7 @@ export const projects: Project[] = [
       'Service Worker',
       'Tailwind CSS'
     ],
-    images: ['/placeholder.svg', '/placeholder.svg']
+    images: ['/finance-tracker/pic_1.png', '/finance-tracker/pic_2.png']
   },
   {
     id: 2,
@@ -38,6 +38,6 @@ export const projects: Project[] = [
       'Server Actions',
       'Tailwind CSS'
     ],
-    images: ['/placeholder.svg', '/placeholder.svg']
+    images: ['/car-tire-center/dashboard_1.png', '/car-tire-center/dashboard_2.png', '/car-tire-center/landing_1.png', '/car-tire-center/landing_2.png']
   }
 ];
