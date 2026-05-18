@@ -27,7 +27,7 @@ export const projects: Project[] = [
   {
     id: 2,
     title: 'TireCenter Pro',
-    link: '#',
+    link: 'https://car-tire-center.vercel.app',
     description:
       'Multi-tenant SaaS platform for automotive tire shops with role-based access control, invoicing, inventory, customer and vehicle management, a public-facing shop page, and a webmaster portal for platform-wide administration.',
     techs: [
@@ -38,6 +38,11 @@ export const projects: Project[] = [
       'Server Actions',
       'Tailwind CSS'
     ],
-    images: ['/car-tire-center/dashboard_1.png', '/car-tire-center/dashboard_2.png', '/car-tire-center/landing_1.png', '/car-tire-center/landing_2.png']
+    images: [
+      '/car-tire-center/dashboard_1.png',
+      '/car-tire-center/dashboard_2.png',
+      '/car-tire-center/landing_1.png',
+      '/car-tire-center/landing_2.png'
+    ]
   }
 ];
