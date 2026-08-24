@@ -4,7 +4,7 @@ import type { Engine } from 'tsparticles-engine';
 import { loadSlim } from 'tsparticles-slim';
 
 /**
- * Was 200 particles in #0ea5e9, a colour from no palette on this site, with
+ * Was 200 particles in #0ea5e9, a color from no palette on this site, with
  * click-to-spawn. Now palette-only, a quarter of the count, and hover-only.
  */
 export default function ParticlesBackground() {

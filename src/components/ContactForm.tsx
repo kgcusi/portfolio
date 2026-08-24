@@ -68,10 +68,10 @@ export default function ContactForm() {
           />
           <div className="flex flex-col gap-1">
             <p className="text-[0.9375rem] font-semibold text-ink">
-              Message sent.
+              Got it.
             </p>
             <p className="text-sm text-ink-body">
-              Thanks for reaching out, I&rsquo;ll get back to you soon.
+              Thanks for reaching out. I&rsquo;ll come back to you shortly.
             </p>
           </div>
         </div>
@@ -159,7 +159,7 @@ export default function ContactForm() {
             <p role="alert" aria-live="assertive" className="empty:hidden">
               {state === 'error' && (
                 <span className="text-sm text-red-700">
-                  That didn&rsquo;t send. Please try again, or email me at{' '}
+                  That didn&rsquo;t go through. Try again, or just email me at{' '}
                   <a
                     href={`mailto:${profile.email}`}
                     className="font-semibold underline underline-offset-4"

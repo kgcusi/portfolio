@@ -6,7 +6,7 @@ export default function About() {
       <div className="flex flex-col gap-4 text-[0.9375rem] leading-relaxed text-ink-body">
         <p>
           I&rsquo;m a developer in the Philippines. Most of what I build is the
-          boring, load-bearing stuff. Timekeeping systems, site reports filed
+          boring, load-bearing stuff. Timekeeping systems, daily reports filed
           from a job site, inventory ledgers, billing runs. The screens people
           have open all day.
         </p>
@@ -17,10 +17,10 @@ export default function About() {
           mostly ERC20 tokens and swap logic.
         </p>
         <p>
-          I&rsquo;ve been the only developer on a project, and I&rsquo;ve been
-          the one picking up someone else&rsquo;s half-finished branch. Both
-          happen. I&rsquo;ve worked with two-person startups and with companies
-          big enough to have their own IT department.
+          Sometimes I&rsquo;m the only developer on a project. Sometimes
+          I&rsquo;m the one picking up someone else&rsquo;s half-finished
+          branch. Both happen. Clients have been two-person startups and
+          companies big enough to have their own IT department.
         </p>
         <p>
           Outside work it&rsquo;s video games, films, and a book I keep meaning

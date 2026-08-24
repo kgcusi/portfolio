@@ -155,7 +155,7 @@ export default function Projects() {
                       <button
                         type="button"
                         onClick={() => open(project.images, project.title, i)}
-                        aria-label={`Enlarge: ${image.alt}`}
+                        aria-label={`View larger: ${image.alt}`}
                         className="block overflow-hidden rounded-lg border border-line
                                    transition-shadow duration-200 ease-out hover:shadow-lift"
                       >
@@ -233,7 +233,7 @@ export default function Projects() {
                 <button
                   type="button"
                   onClick={() => step(-1)}
-                  aria-label="Previous screenshot"
+                  aria-label="Previous image"
                   className="flex h-10 w-10 items-center justify-center rounded-lg text-white/70
                              transition-colors hover:bg-white/10 hover:text-white"
                 >
@@ -245,7 +245,7 @@ export default function Projects() {
                 <button
                   type="button"
                   onClick={() => step(1)}
-                  aria-label="Next screenshot"
+                  aria-label="Next image"
                   className="flex h-10 w-10 items-center justify-center rounded-lg text-white/70
                              transition-colors hover:bg-white/10 hover:text-white"
                 >
