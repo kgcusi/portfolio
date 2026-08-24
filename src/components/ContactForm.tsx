@@ -78,9 +78,8 @@ export default function ContactForm() {
       ) : (
         <>
           <p className="mb-5 max-w-prose text-[0.9375rem] leading-relaxed text-ink-body">
-            Hiring, or have a system that needs building? Tell me what you&rsquo;re
-            working on and I&rsquo;ll reply within a couple of days.
-            You can also reach me directly at{' '}
+            Tell me what you&rsquo;re building and I&rsquo;ll get back to you
+            in a day or two. If you&rsquo;d rather skip the form, I&rsquo;m at{' '}
             <a
               href={`mailto:${profile.email}`}
               className="font-semibold text-accent-ink underline decoration-accent decoration-2 underline-offset-4"

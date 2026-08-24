@@ -2,10 +2,10 @@ export const profile = {
   name: 'Karl Christoper Cusi',
   role: 'Full Stack Developer',
   location: 'Philippines',
-  // Sharpened from "I build user-friendly web applications", which described every
-  // developer alive. This names the two things the work history actually shows.
+  // Names the two things the work history actually shows, instead of
+  // "I build user-friendly web applications", which described every developer alive.
   pitch:
-    'I build the internal systems companies run on day to day, and audit the smart contracts behind Web3 products.',
+    'I build the software companies actually run on. Timekeeping, inventory, billing. I also audit Solidity contracts.',
   email: 'kcgcusi@gmail.com',
   site: 'https://kcgcusi.com',
   links: {
