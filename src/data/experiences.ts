@@ -21,7 +21,7 @@ export const experiences: Experience[] = [
     startYear: '2025',
     endYear: null,
     description:
-      'Five apps here: Timekeeping, Live Monitoring, API Bridge, Logs Tracking and Pay Parking. The tricky one was the biometric integration, reading and processing data straight out of a third-party vendor\u2019s database so clients could watch attendance update in real time.',
+      'Built five applications: Timekeeping, Live Monitoring, API Bridge, Logs Tracking and Pay Parking. The core of the work was integrating third-party biometric and access-control hardware, reading and processing data directly from the vendor’s database to give clients real-time attendance and automated parking fee calculation.',
     techs: ['TypeScript', 'Next.js', 'Nest.js', 'MySQL', 'Node.js', 'React.js'],
   },
   {
@@ -31,7 +31,7 @@ export const experiences: Experience[] = [
     startYear: '2022',
     endYear: null,
     description:
-      'I test smart contracts by hand and with tooling, mostly ERC20 tokens and swap mechanisms. When something looks wrong I dig into it and write it up for the client and their investors.',
+      'Manual and automated testing of smart contracts, mostly ERC20 tokens and swap mechanisms. I review transaction workflows and security mechanisms for vulnerabilities, then write up findings and remediation steps for clients and their investors.',
     techs: ['HardHat', 'JavaScript', 'Solidity', 'Remix', 'Ethereum'],
   },
   {
@@ -41,7 +41,7 @@ export const experiences: Experience[] = [
     startYear: '2025',
     endYear: '2026',
     description:
-      'Backend microservices for an online casino, built in Nest.js. I worked on the Announcement and Notification services, including how they talked to everything else around them.',
+      'Backend microservices for an online casino platform, built with Nest.js. I built and maintained the Announcement and Notification services, using Kafka for event-driven messaging and gRPC for calls between services, all containerized with Docker.',
     techs: ['Node.js', 'Nest.js', 'Kafka', 'Postgres', 'Docker', 'gRPC'],
   },
   {
@@ -51,7 +51,7 @@ export const experiences: Experience[] = [
     startYear: '2024',
     endYear: '2025',
     description:
-      'Came onto InfinityConnect halfway through and worked under two different senior developers as it changed hands. I built the live call feature, wired up Stripe payments, and put together a good chunk of the app.',
+      'Joined InfinityConnect mid-development, working with two senior developers as the project changed hands. I implemented real-time consultation calls over WebSockets, integrated Stripe for per-consultation payments, and built out core parts of the Next.js and GraphQL application.',
     techs: ['Node.js', 'React.js', 'Next.js', 'GraphQL', 'MongoDB', 'AWS'],
   },
   {
@@ -61,7 +61,7 @@ export const experiences: Experience[] = [
     startYear: '2022',
     endYear: '2024',
     description:
-      'Sole developer. I designed and built the record system and the livestreaming template behind their Live Virtual Art Battles, plus a few WebAR pieces in 8th Wall. I also kept their Shopify store ticking over, products and small UI fixes.',
+      'Sole developer on the project. I designed and built the record system and the livestreaming template behind their Live Virtual Art Battles, plus web-based AR experiences using 8th Wall. I also maintained their Shopify store, handling product updates and UI adjustments.',
     techs: [
       'Node.js',
       'Express.js',
@@ -79,7 +79,7 @@ export const experiences: Experience[] = [
     startYear: '2021',
     endYear: '2022',
     description:
-      'Two of us kept the existing web apps running while we built a CMS and an online payroll and attendance system from scratch.',
+      'Worked with one other developer maintaining existing web applications while we built a Content Management System and an online payroll and attendance system. Backend logic and REST APIs in Laravel.',
     techs: ['Laravel', 'PHP', 'HTML', 'CSS', 'JavaScript', 'MySQL', 'Bootstrap'],
   },
 ];

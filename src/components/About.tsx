@@ -5,26 +5,24 @@ export default function About() {
     <Section id="about" title="About">
       <div className="flex flex-col gap-4 text-[0.9375rem] leading-relaxed text-ink-body">
         <p>
-          I&rsquo;m a developer in the Philippines. Most of what I build is the
-          boring, load-bearing stuff. Timekeeping systems, daily reports filed
-          from a job site, inventory ledgers, billing runs. The screens people
-          have open all day.
+          I&rsquo;m a full stack developer based in the Philippines. Most of my
+          work is line-of-business software: timekeeping and access control,
+          field reporting, inventory ledgers, billing and payroll. The systems a
+          company depends on every day.
         </p>
         <p>
-          TypeScript is where I spend most of my time. Next.js and React on the
-          front, Node or Nest behind it, Postgres or MySQL underneath. I&rsquo;ve
-          shipped a fair bit of Laravel too. And I audit Solidity contracts,
-          mostly ERC20 tokens and swap logic.
+          TypeScript is my main stack. Next.js and React on the front end,
+          Node.js and Nest.js on the backend, over PostgreSQL or MySQL. I&rsquo;ve
+          also shipped production Laravel. On the blockchain side I audit
+          Solidity contracts, mostly ERC20 tokens and swap mechanisms.
         </p>
         <p>
-          Sometimes I&rsquo;m the only developer on a project. Sometimes
-          I&rsquo;m the one picking up someone else&rsquo;s half-finished
-          branch. Both happen. Clients have been two-person startups and
-          companies big enough to have their own IT department.
+          I&rsquo;ve worked as the sole developer on a project and as one of
+          several picking up a codebase mid-flight. Clients have ranged from
+          two-person startups to companies with their own IT departments.
         </p>
         <p>
-          Outside work it&rsquo;s video games, films, and a book I keep meaning
-          to finish.
+          Outside work I play video games, watch films, and keep a book going.
         </p>
       </div>
     </Section>

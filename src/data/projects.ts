@@ -9,7 +9,7 @@ export interface Project {
   title: string;
   /** null when there is no public URL to send someone to. */
   link: string | null;
-  /** Explains the missing link so a dead "#" never ships again. */
+  /** Shown in place of a link when a project has no public URL. */
   linkNote?: string;
   /** The single line that has to survive a seven-second scan. */
   highlight: string;
@@ -24,9 +24,9 @@ export const projects: Project[] = [
     title: 'PitStop Pro',
     link: 'https://pitstoppro.vercel.app',
     highlight:
-      'One deployment runs every shop, and no shop can see another one’s data.',
+      'Multi-tenant by design: one deployment serves every shop, each with its own storefront and its own isolated data.',
     description:
-      'Shop software for tire and auto service centers. It covers the whole day. Book the appointment, log what got done to the car, bill it, then pull the parts back out of stock at what they actually cost.',
+      'Shop software for tire and auto service centers, covering the full workflow: booking an appointment, logging the work performed on a vehicle, invoicing it, and drawing the parts back out of inventory at their actual purchase cost.',
     techs: [
       'Next.js 16',
       'TypeScript',
@@ -62,11 +62,11 @@ export const projects: Project[] = [
     id: 2,
     title: 'MAQUIN Engineering Services',
     link: null,
-    linkNote: 'Internal tool, no public demo',
+    linkNote: 'Internal system, available on request',
     highlight:
-      'Materials move on an append-only ledger, so you can always trace where a delivery ended up.',
+      'Materials move between warehouses and job sites on an append-only ledger, so every delivery stays traceable to where it ended up.',
     description:
-      'The internal system a construction and engineering firm runs on. Engineers file daily reports from the site, the office watches budgets against what actually got spent, and every expense and purchase order goes through an approval chain before anyone pays out.',
+      'The internal system a construction and engineering firm runs on. Engineers file daily site reports from the field, the office tracks project budgets against actual spend, and expenses and purchase orders move through a multi-step approval chain before payment.',
     techs: [
       'Next.js 16',
       'TypeScript',
@@ -81,7 +81,7 @@ export const projects: Project[] = [
       {
         thumb: '/maquin/dashboard-thumb.webp',
         full: '/maquin/dashboard.webp',
-        alt: 'MAQUIN dashboard showing active projects and spend',
+        alt: 'MAQUIN dashboard showing active projects and spend against budget',
       },
       {
         thumb: '/maquin/projects-thumb.webp',
@@ -105,9 +105,9 @@ export const projects: Project[] = [
     title: 'MTECH',
     link: 'https://mtechph.com',
     highlight:
-      'Replaced a WordPress site that never made it past one page of the theme’s demo content.',
+      'Content lives in the CMS and layout lives in code, so the team edits freely and every page stays on-template.',
     description:
-      'Company site for a building security integrator. Access control, cameras, turnstiles, and the product catalog behind them. Every heading, figure and spec is editable in the CMS, but the page structure lives in code, so nobody can break the layout from the admin.',
+      'Company site for a building security integrator, covering access control, cameras, turnstiles and the product catalog behind them. Every heading, figure and spec is editable by the team, with media handled through Cloudinary. It replaced the company’s previous WordPress site.',
     techs: [
       'Next.js 16',
       'Payload CMS',
@@ -144,9 +144,9 @@ export const projects: Project[] = [
     title: 'Gentry',
     link: 'https://gentryph.com',
     highlight:
-      'Public listings and broker deals share one database but sit in separate schemas, so neither can touch the other’s tables.',
+      'Public listings and broker deal flow share one database across separate schemas, each with its own ORM and its own isolated tables.',
     description:
-      'A marketplace for golf and country club shares in the Philippines. The public side lists 55 clubs you can filter by region and price. Behind a login, brokers work the actual deals, from clients and listings through to pairing a seller with a buyer and handling the paperwork.',
+      'A marketplace for golf and country club shares in the Philippines. The public side lists 55 clubs filterable by region and price. Behind authentication, brokers manage clients and listings and pair sellers with buyers through to the paperwork.',
     techs: [
       'Next.js 16',
       'Payload CMS',
