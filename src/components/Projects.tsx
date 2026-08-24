@@ -1,162 +1,261 @@
-import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { ExternalLink, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { motion, useReducedMotion } from 'motion/react';
+import { ArrowUpRight, Lock, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import Section from './Section';
 import { projects } from '../data/projects';
+import type { ProjectImage } from '../data/projects';
 
 interface LightboxState {
-  images: string[];
+  images: ProjectImage[];
   title: string;
   index: number;
 }
 
+const FOCUSABLE = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
 export default function Projects() {
   const [lightbox, setLightbox] = useState<LightboxState | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const restoreFocusTo = useRef<HTMLElement | null>(null);
+  const reduced = useReducedMotion();
+
+  const open = (images: ProjectImage[], title: string, index: number) => {
+    restoreFocusTo.current = document.activeElement as HTMLElement | null;
+    setLightbox({ images, title, index });
+  };
 
   const close = useCallback(() => setLightbox(null), []);
 
-  const prev = useCallback(() => {
-    if (!lightbox) return;
-    setLightbox({ ...lightbox, index: (lightbox.index - 1 + lightbox.images.length) % lightbox.images.length });
-  }, [lightbox]);
+  const step = useCallback((delta: number) => {
+    setLightbox((current) =>
+      current === null
+        ? null
+        : {
+            ...current,
+            index:
+              (current.index + delta + current.images.length) %
+              current.images.length,
+          }
+    );
+  }, []);
 
-  const next = useCallback(() => {
-    if (!lightbox) return;
-    setLightbox({ ...lightbox, index: (lightbox.index + 1) % lightbox.images.length });
-  }, [lightbox]);
-
+  // Lock the page behind the dialog without letting the scrollbar's
+  // disappearance shift the layout underneath.
   useEffect(() => {
     if (!lightbox) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') close();
-      if (e.key === 'ArrowLeft') prev();
-      if (e.key === 'ArrowRight') next();
+    const { body, documentElement } = document;
+    const gap = window.innerWidth - documentElement.clientWidth;
+    const prevOverflow = body.style.overflow;
+    const prevPadding = body.style.paddingRight;
+    body.style.overflow = 'hidden';
+    if (gap > 0) body.style.paddingRight = `${gap}px`;
+    return () => {
+      body.style.overflow = prevOverflow;
+      body.style.paddingRight = prevPadding;
     };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [lightbox, close, prev, next]);
+  }, [lightbox]);
+
+  // Move focus in on open, trap Tab inside, hand it back on close.
+  useEffect(() => {
+    if (!lightbox) {
+      restoreFocusTo.current?.focus?.();
+      restoreFocusTo.current = null;
+      return;
+    }
+    dialogRef.current?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        close();
+        return;
+      }
+      if (e.key === 'ArrowLeft') step(-1);
+      if (e.key === 'ArrowRight') step(1);
+      if (e.key !== 'Tab') return;
+
+      const nodes = dialogRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE);
+      if (!nodes || nodes.length === 0) return;
+      const first = nodes[0];
+      const last = nodes[nodes.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [lightbox, close, step]);
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-60px' }}
-        transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
-        className="bg-white rounded-2xl shadow-md p-8"
-      >
-        <h2 className="text-xs font-bold uppercase tracking-widest text-custom-sky mb-6">
-          Projects
-        </h2>
-        <div className="flex flex-col divide-y divide-custom-neutral">
+      <Section id="projects" title="Projects" delay={0.1}>
+        <ol className="flex flex-col">
           {projects.map((project) => (
-            <div key={project.id} className="flex flex-col gap-2 py-5 first:pt-0 last:pb-0">
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-bold text-custom-dark hover:text-custom-sky transition-colors w-fit"
-              >
-                {project.title}
-                <ExternalLink size={12} />
-              </a>
-              <p className="text-custom-slate text-sm leading-relaxed">{project.description}</p>
-              <div className="flex flex-wrap gap-1.5 mt-1">
-                {project.techs.map((tech) => (
-                  <span
-                    key={tech}
-                    className="text-custom-slate bg-custom-light px-2 py-0.5 text-xs rounded font-medium"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              {project.images.length > 0 && (
-                <div className="flex gap-3 overflow-x-auto pb-1 mt-3">
-                  {project.images.map((src, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setLightbox({ images: project.images, title: project.title, index: i })}
-                      className="shrink-0 rounded-lg overflow-hidden border border-custom-neutral focus:outline-none focus:ring-2 focus:ring-custom-sky"
-                    >
-                      <img
-                        src={src}
-                        alt={`${project.title} screenshot ${i + 1}`}
-                        className="h-36 w-auto object-cover hover:opacity-80 transition-opacity cursor-pointer"
-                      />
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </motion.div>
-
-      <AnimatePresence>
-        {lightbox && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4"
-            onClick={close}
-          >
-            {/* Dialog */}
-            <motion.div
-              initial={{ scale: 0.92, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.92, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="relative flex flex-col items-center gap-4 max-w-4xl w-full"
-              onClick={(e) => e.stopPropagation()}
+            <li
+              key={project.id}
+              className="flex flex-col gap-3 border-t border-line py-6 first:border-t-0 first:pt-0 last:pb-0"
             >
-              {/* Close */}
-              <button
-                onClick={close}
-                className="absolute -top-10 right-0 text-white/70 hover:text-white transition-colors"
-              >
-                <X size={22} />
-              </button>
-
-              {/* Image */}
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={lightbox.index}
-                  src={lightbox.images[lightbox.index]}
-                  alt={`${lightbox.title} screenshot ${lightbox.index + 1}`}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.18 }}
-                  className="max-h-[75vh] w-auto rounded-xl shadow-2xl object-contain"
-                />
-              </AnimatePresence>
-
-              {/* Controls */}
-              {lightbox.images.length > 1 && (
-                <div className="flex items-center gap-6">
-                  <button
-                    onClick={prev}
-                    className="text-white/70 hover:text-white transition-colors"
-                  >
-                    <ChevronLeft size={28} />
-                  </button>
-                  <span className="text-white/60 text-sm">
-                    {lightbox.index + 1} / {lightbox.images.length}
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <h3 className="text-base font-bold text-ink">
+                  {project.link ? (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center gap-1 text-ink
+                                 decoration-accent decoration-2 underline-offset-4 hover:underline"
+                    >
+                      {project.title}
+                      <ArrowUpRight
+                        size={15}
+                        aria-hidden="true"
+                        className="text-accent-ink transition-transform duration-200 ease-out
+                                   group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                      />
+                      <span className="sr-only">(opens in a new tab)</span>
+                    </a>
+                  ) : (
+                    project.title
+                  )}
+                </h3>
+                {!project.link && project.linkNote && (
+                  <span className="inline-flex items-center gap-1 rounded-md bg-accent-wash px-2 py-0.5 text-2xs font-semibold uppercase text-accent-ink">
+                    <Lock size={11} aria-hidden="true" />
+                    {project.linkNote}
                   </span>
-                  <button
-                    onClick={next}
-                    className="text-white/70 hover:text-white transition-colors"
-                  >
-                    <ChevronRight size={28} />
-                  </button>
-                </div>
+                )}
+              </div>
+
+              {/* The line that has to land in a seven-second scan. */}
+              <p className="border-l-2 border-accent pl-3 text-[0.9375rem] font-semibold leading-relaxed text-ink">
+                {project.highlight}
+              </p>
+
+              <p className="text-[0.9375rem] leading-relaxed text-ink-body">
+                {project.description}
+              </p>
+
+              <ul className="mt-1 flex flex-wrap gap-1.5">
+                {project.techs.map((tech) => (
+                  <li key={tech} className="chip">
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+
+              {project.images.length > 0 && (
+                <ul className="-mx-1 mt-2 flex gap-3 overflow-x-auto px-1 pb-2">
+                  {project.images.map((image, i) => (
+                    <li key={image.thumb} className="shrink-0">
+                      <button
+                        type="button"
+                        onClick={() => open(project.images, project.title, i)}
+                        aria-label={`Enlarge: ${image.alt}`}
+                        className="block overflow-hidden rounded-lg border border-line
+                                   transition-shadow duration-200 ease-out hover:shadow-lift"
+                      >
+                        <img
+                          src={image.thumb}
+                          alt={image.alt}
+                          width={480}
+                          height={369}
+                          loading="lazy"
+                          decoding="async"
+                          className="h-32 w-auto object-cover transition-transform duration-300
+                                     ease-out motion-safe:hover:scale-[1.03] sm:h-36"
+                        />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               )}
-            </motion.div>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      {/* Deliberately not AnimatePresence. In motion 11.18 its exit never
+          completes here, which left the closed overlay mounted at opacity 0,
+          swallowing every click on the page, and pinned mode="wait" on the
+          first image so navigation did nothing. Mount/unmount is React's job;
+          only the enter animation is motion's. */}
+      {lightbox && (
+        <motion.div
+          initial={reduced ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: reduced ? 0 : 0.18 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-ink/85 p-4 backdrop-blur-sm"
+          onClick={close}
+        >
+          <motion.div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${lightbox.title} screenshots`}
+            tabIndex={-1}
+            initial={reduced ? false : { scale: 0.96, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: reduced ? 0 : 0.18, ease: [0.22, 1, 0.36, 1] }}
+            className="relative flex w-full max-w-5xl flex-col items-center gap-4 focus:outline-none"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex w-full items-center justify-between gap-4">
+              <p className="text-sm font-semibold text-white">{lightbox.title}</p>
+              <button
+                type="button"
+                onClick={close}
+                aria-label="Close"
+                className="flex h-9 w-9 items-center justify-center rounded-lg text-white/70
+                           transition-colors hover:bg-white/10 hover:text-white"
+              >
+                <X size={20} aria-hidden="true" />
+              </button>
+            </div>
+
+            {/* Keyed on index: React swaps the node and the new one fades in. */}
+            <motion.img
+              key={lightbox.index}
+              src={lightbox.images[lightbox.index].full}
+              alt={lightbox.images[lightbox.index].alt}
+              initial={reduced ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: reduced ? 0 : 0.15 }}
+              className="max-h-[72vh] w-auto rounded-xl object-contain shadow-2xl"
+            />
+
+            {lightbox.images.length > 1 && (
+              <div className="flex items-center gap-4">
+                <button
+                  type="button"
+                  onClick={() => step(-1)}
+                  aria-label="Previous screenshot"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg text-white/70
+                             transition-colors hover:bg-white/10 hover:text-white"
+                >
+                  <ChevronLeft size={24} aria-hidden="true" />
+                </button>
+                <p aria-live="polite" className="tabular text-sm text-white/70">
+                  {lightbox.index + 1} / {lightbox.images.length}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => step(1)}
+                  aria-label="Next screenshot"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg text-white/70
+                             transition-colors hover:bg-white/10 hover:text-white"
+                >
+                  <ChevronRight size={24} aria-hidden="true" />
+                </button>
+              </div>
+            )}
           </motion.div>
-        )}
-      </AnimatePresence>
+        </motion.div>
+      )}
     </>
   );
 }

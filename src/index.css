@@ -1,18 +1,83 @@
+@font-face {
+  font-family: 'Inter var';
+  src: url('./assets/fonts/inter-var-latin.woff2') format('woff2-variations');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@layer base {
+  :root {
+    color-scheme: light;
+    --cursor-x: 50vw;
+    --cursor-y: 50vh;
+  }
 
-  color-scheme: light;
-  color: #29353C;
-  background-color: #DFEBF6;
+  html {
+    scroll-behavior: smooth;
+    /* sticky sidebar clearance for in-page anchors */
+    scroll-padding-top: 5rem;
+  }
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  body {
+    @apply bg-canvas font-sans text-ink-body antialiased;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Dates and counts stay aligned across rows. */
+  time,
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent-ink ring-offset-2 ring-offset-canvas;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: #aac7d8;
+    color: #29353c;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-line bg-surface shadow-card;
+  }
+
+  /* Small caps label above each section. Ink, not accent: the old #AAC7D8 was 1.75:1. */
+  .eyebrow {
+    @apply text-eyebrow font-bold uppercase text-ink;
+  }
+
+  .chip {
+    @apply rounded-md bg-accent-wash px-2 py-0.5 text-2xs font-medium tracking-normal text-accent-ink;
+  }
+
+  .skip-link {
+    @apply absolute left-4 top-4 z-[100] -translate-y-24 rounded-lg bg-ink px-4 py-2 text-sm
+           font-semibold text-white shadow-lift transition-transform focus:translate-y-0;
+  }
+}
+
+/* Honour the OS motion preference everywhere, including smooth scrolling. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

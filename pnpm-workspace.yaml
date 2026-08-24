@@ -1,3 +1,11 @@
+# Single-package repo, but the file has to declare `packages` anyway: pnpm 9
+# (what Vercel falls back to when corepack does not engage) refuses to install
+# without it and dies with "packages field missing or empty".
+packages:
+  - '.'
+
+# pnpm 10+ blocks dependency build scripts by default. esbuild's postinstall
+# links its platform binary, so vite build fails without it.
 allowBuilds:
   esbuild: true
   react-particles: true

@@ -1,39 +1,31 @@
-import { motion } from 'motion/react';
+import Section from './Section';
 
 export default function About() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="bg-white rounded-2xl shadow-md p-8"
-    >
-      <h2 className="text-xs font-bold uppercase tracking-widest text-custom-sky mb-5">
-        About
-      </h2>
-      <div className="flex flex-col gap-4">
-        <p className="text-custom-slate text-sm leading-relaxed">
-          I'm a developer based in the Philippines. I have a passion for web
-          development and love to create web applications that are user-friendly
-          and accessible.
+    <Section id="about" title="About">
+      <div className="flex flex-col gap-4 text-[0.9375rem] leading-relaxed text-ink-body">
+        <p>
+          I&rsquo;m a developer based in the Philippines. Most of my work is the
+          software a business actually operates on: timekeeping and monitoring,
+          site reporting, inventory ledgers, billing, and the admin screens
+          behind them.
         </p>
-        <p className="text-custom-slate text-sm leading-relaxed">
-          My main stack is JavaScript/TypeScript, using Next.js/React.js for the
-          frontend and Node.js/Nest.js for the backend. I also have experience
-          working with other technologies like Laravel. I'm always eager to
-          learn new technologies and improve my skills.
+        <p>
+          My main stack is TypeScript, with Next.js and React on the front end
+          and Node.js or Nest.js behind it, over Postgres and MySQL. I&rsquo;ve
+          also shipped with Laravel, and I audit Solidity contracts for ERC20
+          tokens and swap mechanisms.
         </p>
-        <p className="text-custom-slate text-sm leading-relaxed">
-          Professionally, I have worked with various clients and companies
-          around the world, from startups and small businesses to large
-          corporations, helping them build web apps that meet their needs.
+        <p>
+          I&rsquo;ve worked with startups, small businesses, and large
+          corporations, sometimes as the only developer on a project and
+          sometimes alongside senior developers who handed it over mid-flight.
         </p>
-        <p className="text-custom-slate text-sm leading-relaxed">
-          In my spare time, I enjoy playing video games, watching movies and TV
-          shows. I also try to read books and learn new things.
+        <p>
+          Away from the keyboard I play video games, watch films and series, and
+          try to keep a book going.
         </p>
       </div>
-    </motion.div>
+    </Section>
   );
 }
