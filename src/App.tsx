@@ -30,7 +30,7 @@ function App() {
       <CursorGradient cursorPosition={cursorPosition} />
       <div className="flex flex-col md:flex-row items-start mx-auto min-h-screen max-w-screen-xl px-6 py-10 gap-6 font-sans md:px-10 lg:px-16 lg:py-12">
 
-        {/* Sticky sidebar — single unified card */}
+        {/* Sticky sidebar: single unified card */}
         <div className="w-full md:w-72 lg:w-80 shrink-0 lg:sticky lg:top-12">
           <motion.div
             initial={{ opacity: 0, x: -24 }}
@@ -46,7 +46,7 @@ function App() {
             <Header />
             <Nav />
 
-            {/* Contact form — desktop only, pinned to bottom of sidebar */}
+            {/* Contact form: desktop only, pinned to bottom of sidebar */}
             <div className="hidden lg:block w-full pt-2 border-t border-custom-neutral">
               <ContactForm />
             </div>
@@ -59,7 +59,7 @@ function App() {
           <Experiences />
           <Projects />
 
-          {/* Contact form — mobile only, at the very bottom */}
+          {/* Contact form: mobile only, at the very bottom */}
           <div className="lg:hidden bg-white rounded-2xl shadow-md p-8">
             <ContactForm />
           </div>

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import Particles from 'react-particles';
-import type { Engine, Container } from 'tsparticles-engine';
+import type { Engine } from 'tsparticles-engine';
 import { loadSlim } from 'tsparticles-slim';
 
 const ParticlesBackground = () => {
@@ -8,16 +8,10 @@ const ParticlesBackground = () => {
     await loadSlim(engine);
   }, []);
 
-  const particlesLoaded = useCallback(
-    async (_container: Container | undefined) => {},
-    []
-  );
-
   return (
     <Particles
       id="tsparticles"
       init={particlesInit}
-      loaded={particlesLoaded}
       className="absolute inset-0 -z-10"
       options={{
         fullScreen: { enable: false },

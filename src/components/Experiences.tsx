@@ -18,7 +18,7 @@ export default function Experiences() {
           <div key={experience.id} className="flex flex-col gap-2 py-5 first:pt-0 last:pb-0">
             <p className="text-xs font-semibold text-custom-steel uppercase tracking-wide">
               {experience.startYear}
-              {experience.endYear ? ` — ${experience.endYear}` : ' — Present'}
+              {experience.endYear ? ` – ${experience.endYear}` : ' – Present'}
             </p>
             <p className="text-sm font-bold text-custom-dark">{experience.title}</p>
             <p className="text-custom-slate text-sm leading-relaxed">{experience.description}</p>

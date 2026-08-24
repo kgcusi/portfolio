@@ -30,6 +30,7 @@ export const experiences = [
     id: 4,
     title: 'Full Stack Developer - EmergentX',
     startYear: '2024',
+    endDate: '2025',
     endYear: null,
     description:
       'Joined the InfinityConnect project mid-development, collaborating with two different senior developers at different stages of the project. Implemented live call functionality, integrated Stripe payments, and developed key application components.',

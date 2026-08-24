@@ -26,7 +26,7 @@ export default function About() {
         </p>
         <p className="text-custom-slate text-sm leading-relaxed">
           Professionally, I have worked with various clients and companies
-          around the world — from startups and small businesses to large
+          around the world, from startups and small businesses to large
           corporations, helping them build web apps that meet their needs.
         </p>
         <p className="text-custom-slate text-sm leading-relaxed">
